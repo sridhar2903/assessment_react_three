@@ -2,69 +2,72 @@ import React from 'react'
 import './style.css'
 import Details from './Details'
 
-class Maincomponent extends React.Component{
-    state={
-        name:"",
-        department:"",
-        rating:"",
-        showdetails:true,
-        empdetails:[]
+class Maincomponent extends React.Component {
+    state = {
+        name: "",
+        department: "",
+        rating: "",
+        showdetails: true,
+        empdetails: []
     }
-    updateinput=(event)=>
-    {
+    updateinput = (event) => {
         this.setState({
-            [event.target.name]:event.target.value
+            [event.target.name]: event.target.value
         })
     }
-    onsubmit=(event)=>{
+    onsubmit = (event) => {
         event.preventDefault()
 
-        const Objtemp={
-            name:this.state.name,
-            department:this.state.department,
-            rating:this.state.rating,
-            showdetails:this.state.showdetails
-           
+        const Objtemp = {
+            name: this.state.name,
+            department: this.state.department,
+            rating: this.state.rating,
+            showdetails: this.state.showdetails
+
         }
 
-        const arraytemp=this.state.empdetails;
+        const arraytemp = this.state.empdetails;
         arraytemp.push(Objtemp);
-        this.setState({empdetails:arraytemp,showdetails:!this.state.showdetails});
+        this.setState({ empdetails: arraytemp, showdetails: !this.state.showdetails });
     }
 
-    onback=()=> {
+    onback = () => {
         this.setState({
-            showdetails:!this.state.showdetails
+            showdetails: !this.state.showdetails
         })
 
     }
 
-    render()
-    {
+    render() {
         return (
             <>
-           { this.state.showdetails ? (
-               <div>
-             <h1 id="headstyle">EMPLOYEE FEEDBACK FORM</h1>
-             <form id='emp' onSubmit={this.onsubmit}>
-                 <label for="name" id="namestyle">Name:</label>
-             <input type="text" id='name' name='name' onChange={this.updateinput}  placeholder=''value={this.state.name} required/><br></br><br></br>
-             <label for="dept" id="deptstyle">Department:</label>
-             <input type="text" id='dept' name='department' onChange={this.updateinput} placeholder='' value={this.state.department} required/><br></br><br></br>
-             <label for="rating" id="ratestyle">Rating:</label>
-             <input type="number" id='rating' name='rating' onChange={this.updateinput} placeholder='' value={this.state.rating} required/><br></br><br></br>
-             <button type='submit' id="sub" >Submit</button><br></br><br></br>
+                {this.state.showdetails ? (
+                    <div>
+                        <div id="center">
+                            <h1 id="headstyle">EMPLOYEE FEEDBACK FORM</h1>
+                        </div><br />
+                        <div id="containerform">
+                            <form onSubmit={this.onsubmit}>
+                                <br /><br />
+                                &nbsp;&nbsp; <label for="name" id="namestyle">Name</label><br /><br />
+                                &nbsp;&nbsp;<input type="text" id='name' name='name' onChange={this.updateinput} placeholder='Enter Name ' value={this.state.name} required /><br /><br />
+                                &nbsp;&nbsp;<label for="dept" id="deptstyle">Department</label><br /><br />
+                                &nbsp;&nbsp;<input type="text" id='dept' name='department' onChange={this.updateinput} placeholder='Enter Department' value={this.state.department} required /><br /><br />
+                                &nbsp;&nbsp;<label for="rating" id="ratestyle">Rating</label><br /><br />
+                                &nbsp;&nbsp;<input type="number" id='rating' name='rating' onChange={this.updateinput} placeholder='Enter Rating' value={this.state.rating} required /><br /><br />
+                                &nbsp;&nbsp;<button id="sub" type="submit" >Submit</button><br /><br />
 
-             </form>
-             </div> ):( 
-                
-             
-                 <Details details={this.state.empdetails} back={this.onback}/>
-              
-             )}
-         
-   
-           
+                            </form>
+                        </div>
+
+                    </div>) : (
+
+                    <Details details={this.state.empdetails} back={this.onback} />
+
+                )}
+
+
+
             </>
         )
     }
