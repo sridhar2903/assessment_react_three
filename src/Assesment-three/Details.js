@@ -14,7 +14,7 @@ class Details extends React.Component {
             return (
 
               <p id="details">
-                Name: {value.name} || Department:{value.department} || Rating:{value.rating}
+                {index+1}. Name: {value.name} || Department:{value.department} || Rating:{value.rating}
               </ p>
 
             )
